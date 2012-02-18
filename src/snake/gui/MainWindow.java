@@ -6,6 +6,7 @@ package snake.gui;
 
 import java.awt.Color;
 import java.awt.Insets;
+import java.awt.KeyboardFocusManager;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import snake.SnakeGame;
@@ -55,8 +56,9 @@ public class MainWindow {
 		ga.setVisible(true);
 		ga.setFocusable(true);
 		ga.requestFocus();
-		ga.addKeyListener(new SnakeListener(game));
 		frame.add(ga);
+		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		manager.addKeyEventDispatcher(new SnakeGameKeyDispatcher(game));
 	}
 	/**
 	 *  Method for repainting the game area
